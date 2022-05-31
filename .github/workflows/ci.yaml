@@ -1,0 +1,30 @@
+name: Deploy
+
+on: 
+  push:
+    branch:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: clone the repo
+        uses: actions/checkout@v1
+
+      - name: Assume role using OIDC
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          role-to-assume: arn:aws:iam::982195495700:role/laravel-serverless-deploy
+          aws-region: eu-west-2
+
+      - name: cdk deploy
+        uses: youyo/aws-cdk-github-action@v2
+        with:
+          working_dir: './cdk'
+          cdk_subcommand: 'deploy'
+          cdk_args: '--require-approval never'
