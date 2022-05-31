@@ -19,7 +19,7 @@ jobs:
       - name: Assume role using OIDC
         uses: aws-actions/configure-aws-credentials@master
         with:
-          role-to-assume: arn:aws:iam::982195495700:role/laravel-serverless-deploy
+          role-to-assume: arn:aws:iam::982195495700:role/goodluckeverybody-laravel-serverless-deploy
           aws-region: eu-west-2
 
       - name: cdk deploy
