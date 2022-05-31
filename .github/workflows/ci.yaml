@@ -28,3 +28,4 @@ jobs:
           working_dir: './cdk'
           cdk_subcommand: 'deploy'
           cdk_args: '--require-approval never'
+          cdk_stack: 'CdkStack'
